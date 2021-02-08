@@ -1,9 +1,14 @@
 /* global data */
 /* exported data */
 
-var $urlInput = document.querySelector('#image-url');
-var $entryImage = document.querySelector('.entry-image');
+var $entryForm = document.querySelector('.entry-form');
 
-$urlInput.addEventListener('input', function (event) {
+$entryForm.addEventListener('input', function (event) {
+  var $entryImage = document.querySelector('.entry-image');
   $entryImage.setAttribute('src', event.target.value);
+});
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
 });
