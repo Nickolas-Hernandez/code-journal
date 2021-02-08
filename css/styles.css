@@ -12,16 +12,34 @@ h3 {
 
 header {
   background-color: #590202;
-  height: 80px;
+  height: 70px;
 }
 
 img {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 label,
 input {
   display: block;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  border: 2px solid black;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  border: 2px solid black;
 }
 
 .header-container {
@@ -36,5 +54,26 @@ input {
 }
 
 form > h2 {
-  padding: 1.4rem 0;
+  padding: 1rem 0;
+}
+
+.img-label-wrapper {
+  margin-bottom: 0.8rem;
+}
+
+#save-button {
+  width: 60px;
+  box-shadow: 2px 2px black;
+  margin-left: auto;
+  background-color: rgb(245, 245, 245);
+}
+
+form {
+  padding-bottom: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  form > h2 {
+    margin: 2rem 0;
+  }
 }
