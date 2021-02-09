@@ -27,6 +27,10 @@ function createEntry(entry){
   var entryImage = document.createElement('img');
   var entryTitle = document.createElement('h3');
   var entryNotes = document.createElement('p');
+  var columnHalf = document.createElement('div');
+  newEntry.className = "row";
+  columnHalf.className = "column-half";
+
 }
 
 $imageInput.addEventListener('input', handleImageUrlInput);
