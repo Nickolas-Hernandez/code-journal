@@ -1,15 +1,14 @@
 /* global data */
 /* exported data */
-
 var $entryForm = document.querySelector('.entry-form');
 var $imageInput = document.querySelector('#image-url');
 var $entryImage = document.querySelector('.entry-image');
 
-$imageInput.addEventListener('input', function (event) {
+function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
-});
+}
 
-$entryForm.addEventListener('submit', function (event) {
+function handleEntrySubmit(event) {
   event.preventDefault();
   var entry = {
     image: $entryForm.elements.image.value,
@@ -21,4 +20,7 @@ $entryForm.addEventListener('submit', function (event) {
   data.entries.push(entry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
-});
+}
+
+$imageInput.addEventListener('input', handleImageUrlInput);
+$entryForm.addEventListener('submit', handleEntrySubmit);
