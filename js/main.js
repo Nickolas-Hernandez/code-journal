@@ -4,6 +4,8 @@ var $entryForm = document.querySelector('.entry-form');
 var $imageInput = document.querySelector('#image-url');
 var $entryImage = document.querySelector('.entry-image');
 var $entryList = document.querySelector('.entries');
+var $newEntryBtn = document.querySelector('.new-entry-button');
+var $divFormEntry = document.querySelector('.entry-form-sec');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -51,6 +53,11 @@ function generateEntries(event) {
   }
 }
 
+function openEntryForm(event) {
+  $divFormEntry.className = 'entry-form-sec';
+}
+
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 window.addEventListener('DOMContentLoaded', generateEntries);
+$newEntryBtn.addEventListener('click', openEntryForm);
