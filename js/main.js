@@ -6,6 +6,7 @@ var $entryImage = document.querySelector('.entry-image');
 var $entryList = document.querySelector('.entries');
 var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
+var $closeButton = document.querySelector('.close-button');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -57,7 +58,12 @@ function openEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec';
 }
 
+function closeEntryForm(event) {
+  $divFormEntry.className = 'entry-form-sec hidden';
+}
+
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 window.addEventListener('DOMContentLoaded', generateEntries);
 $newEntryBtn.addEventListener('click', openEntryForm);
+$closeButton.addEventListener('click', closeEntryForm);
