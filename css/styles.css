@@ -37,6 +37,7 @@ input {
   border: 1px solid rgb(101, 101, 101);
   border-radius: 4px;
   box-shadow: 0 3px 4px  rgba(109, 109, 109, 0.5);
+  outline: none;
 }
 
 textarea {
@@ -45,6 +46,7 @@ textarea {
   border: 1px solid rgb(101, 101, 101);
   box-shadow: 0 3px 4px  rgba(109, 109, 109, 0.5);
   border-radius: 4px;
+  outline: none;
 }
 
 .header-container {
