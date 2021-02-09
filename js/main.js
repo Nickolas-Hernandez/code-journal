@@ -28,10 +28,24 @@ function createEntry(entry){
   var entryTitle = document.createElement('h3');
   var entryNotes = document.createElement('p');
   var columnHalf = document.createElement('div');
+  var columnOtherHalf = document.createElement('div');
   newEntry.className = "row";
   columnHalf.className = "column-half";
-
+  columnOtherHalf.className = "column-half";
+  entryImage.setAttribute('src', entry.image);
+  entryImage.setAttribute('alt', 'entry image');
+  entryTitle.textContent = entry.title;
+  entryNotes.textContent = entry.notes;
+  columnHalf.appendChild(entryImage);
+  newEntry.appendChild(columnHalf);
+  columnOtherHalf.appendChild(entryTitle);
+  columnOtherHalf.appendChild(entryNotes);
+  newEntry.appendChild(columnOtherHalf);
+  console.log('newEntry', newEntry);
 }
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
+
+
+createEntry(data.entries[0]);
