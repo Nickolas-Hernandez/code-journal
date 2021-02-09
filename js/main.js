@@ -22,5 +22,12 @@ function handleEntrySubmit(event) {
   $entryForm.reset();
 }
 
+function createEntry(entry){
+  var newEntry = document.createElement('li');
+  var entryImage = document.createElement('img');
+  var entryTitle = document.createElement('h3');
+  var entryNotes = document.createElement('p');
+}
+
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
