@@ -3,6 +3,7 @@
 var $entryForm = document.querySelector('.entry-form');
 var $imageInput = document.querySelector('#image-url');
 var $entryImage = document.querySelector('.entry-image');
+var $entryList = document.querySelector('.entries');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -22,16 +23,16 @@ function handleEntrySubmit(event) {
   $entryForm.reset();
 }
 
-function createEntry(entry){
+function createEntry(entry) {
   var newEntry = document.createElement('li');
   var entryImage = document.createElement('img');
   var entryTitle = document.createElement('h3');
   var entryNotes = document.createElement('p');
   var columnHalf = document.createElement('div');
   var columnOtherHalf = document.createElement('div');
-  newEntry.className = "row";
-  columnHalf.className = "column-half";
-  columnOtherHalf.className = "column-half";
+  newEntry.className = 'row';
+  columnHalf.className = 'column-half';
+  columnOtherHalf.className = 'column-half';
   entryImage.setAttribute('src', entry.image);
   entryImage.setAttribute('alt', 'entry image');
   entryTitle.textContent = entry.title;
@@ -41,11 +42,15 @@ function createEntry(entry){
   columnOtherHalf.appendChild(entryTitle);
   columnOtherHalf.appendChild(entryNotes);
   newEntry.appendChild(columnOtherHalf);
-  console.log('newEntry', newEntry);
+  $entryList.appendChild(newEntry);
+}
+
+function generateEntries(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    createEntry(data.entries[i]);
+  }
 }
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
-
-
-createEntry(data.entries[0]);
+window.addEventListener('DOMContentLoaded', generateEntries);
