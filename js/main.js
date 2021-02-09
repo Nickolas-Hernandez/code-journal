@@ -17,7 +17,7 @@ function handleEntrySubmit(event) {
     entryId: data.nextEntryId
   };
   data.nextEntryId++;
-  data.entries.push(entry);
+  data.entries.unshift(entry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
 }
