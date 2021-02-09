@@ -81,8 +81,23 @@ form {
   padding-bottom: 1rem;
 }
 
+ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+li {
+  width: 100%;
+  padding: 1rem 0;
+}
+
 @media only screen and (min-width: 768px) {
   form > h2 {
     margin: 2rem 0;
+  }
+
+  li {
+    padding: 2rem;
   }
 }
