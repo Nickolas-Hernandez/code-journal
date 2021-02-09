@@ -99,6 +99,31 @@ li {
   text-decoration: none;
 }
 
+.entries-header {
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  padding: 1rem 0;
+}
+
+.new-entry-button {
+  font-size: 16px;
+  width: 70px;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background-color: #edf1f7;
+  box-shadow: 1px 2px 3px rgba(99, 99, 99, 0.2);
+  cursor: pointer;
+}
+
+.new-entry-button:hover {
+  background-color: #590202;
+  color: white;
+}
+
 @media only screen and (min-width: 768px) {
   form > h2 {
     margin: 2rem 0;
