@@ -6,9 +6,9 @@ var $entryImage = document.querySelector('.entry-image');
 var $entryList = document.querySelector('.entries');
 var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
-var $closeButton = document.querySelector('.close-button');
 var $entriesList = document.querySelector('.entries-section');
 var $entriesNav = document.querySelector('.entries-nav');
+var $formTitle = document.querySelector('.form-title')
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -75,6 +75,7 @@ function openEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec';
   $entriesList.className = 'entries-section hidden';
   data.view = 'entry-form';
+  $formTitle.textContent = 'New Entry';
 }
 
 function closeEntryForm(event) {
@@ -93,7 +94,8 @@ function openPreviousView(event) {
 
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
-    $divFormEntry.className = 'entry-form-sec';
+    openEntryForm();
+    $formTitle.textContent = 'Edit Entry';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
     var dataEntry = data.entries.length - entryID;
@@ -102,13 +104,13 @@ function handleEdit(event) {
     $entryImage.setAttribute('src', data.editing.image);
     $entryForm.elements['entry-title'].value = data.editing.title;
     $entryForm.elements['notes-entry'].value = data.editing.notes;
+    console.log($entryForm);
   }
 }
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
-$closeButton.addEventListener('click', closeEntryForm);
 $entriesNav.addEventListener('click', closeEntryForm);
 $entryList.addEventListener('click', handleEdit);
 window.addEventListener('DOMContentLoaded', generateEntries);
