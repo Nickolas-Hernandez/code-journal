@@ -41,7 +41,7 @@ function createEntry(entry) {
   var imageContainer = document.createElement('div');
   var titleRow = document.createElement('div');
   var editIcon = document.createElement('i');
-  newEntry.className = 'row';
+  newEntry.className = 'entry row';
   columnHalf.className = 'column-half';
   columnOtherHalf.className = 'column-half';
   imageContainer.className = 'image-container';
@@ -94,6 +94,8 @@ function openPreviousView(event) {
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
     $divFormEntry.className = 'entry-form-sec';
+    var entry = event.target.closest('.entry');
+    var entryID = entry.getAttribute('data-entry-id');
   }
 }
 
