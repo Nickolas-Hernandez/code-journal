@@ -39,11 +39,15 @@ function createEntry(entry) {
   var columnHalf = document.createElement('div');
   var columnOtherHalf = document.createElement('div');
   var imageContainer = document.createElement('div');
+  var titleRow = document.createElement('div');
+  var editIcon = document.createElement('i');
   newEntry.className = 'row';
   columnHalf.className = 'column-half';
   columnOtherHalf.className = 'column-half';
   imageContainer.className = 'image-container';
   entryImage.className = 'entry-image';
+  titleRow.className = 'title-row row';
+  editIcon.className = 'fas fa-pencil-alt';
   entryImage.setAttribute('src', entry.image);
   entryImage.setAttribute('alt', 'entry image');
   entryTitle.textContent = entry.title;
@@ -51,7 +55,9 @@ function createEntry(entry) {
   imageContainer.appendChild(entryImage);
   columnHalf.appendChild(imageContainer);
   newEntry.appendChild(columnHalf);
-  columnOtherHalf.appendChild(entryTitle);
+  titleRow.appendChild(entryTitle);
+  titleRow.appendChild(editIcon);
+  columnOtherHalf.appendChild(titleRow);
   columnOtherHalf.appendChild(entryNotes);
   newEntry.appendChild(columnOtherHalf);
   return newEntry;
