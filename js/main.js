@@ -3,7 +3,7 @@
 var $entryForm = document.querySelector('.entry-form');
 var $imageInput = document.querySelector('#image-url');
 var $entryImage = document.querySelector('.entry-image');
-var $entryList = document.querySelector('.entries'); //enntry ul
+var $entryList = document.querySelector('.entries'); // enntry ul
 var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
 var $closeButton = document.querySelector('.close-button');
@@ -91,15 +91,11 @@ function openPreviousView(event) {
   }
 }
 
-function handleEdit(event){
-  if(event.target.tagName !== 'I'){
-    return;
-  }else{
-    console.log('hello!!')
+function handleEdit(event) {
+  if (event.target.tagName === 'I') {
+    $divFormEntry.className = 'entry-form-sec';
   }
 }
-
-
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
