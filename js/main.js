@@ -9,7 +9,7 @@ var $divFormEntry = document.querySelector('.entry-form-sec');
 var $closeButton = document.querySelector('.close-button');
 
 function handleImageUrlInput(event) {
-  $entryImage.setAttribute('src', event.target.value);
+   $entryImage.setAttribute('src', event.target.value);
 }
 
 function handleEntrySubmit(event) {
