@@ -60,14 +60,25 @@ function generateEntries(event) {
 
 function openEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec';
+  data.view = 'entry-form';
 }
 
 function closeEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec hidden';
+  data.view = 'entry-list';
+}
+
+function openPreviousView(event) {
+  if (data.view === 'entry-form') {
+    $divFormEntry.className = 'entry-form-sec';
+  } else {
+    $divFormEntry.className = 'entry-form-sec hidden';
+  }
 }
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
-window.addEventListener('DOMContentLoaded', generateEntries);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $closeButton.addEventListener('click', closeEntryForm);
+window.addEventListener('DOMContentLoaded', generateEntries);
+window.addEventListener('load', openPreviousView);
