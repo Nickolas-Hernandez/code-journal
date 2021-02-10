@@ -7,9 +7,10 @@ var $entryList = document.querySelector('.entries');
 var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
 var $closeButton = document.querySelector('.close-button');
+var $entriesList = document.querySelector('.entries-section');
 
 function handleImageUrlInput(event) {
-   $entryImage.setAttribute('src', event.target.value);
+  $entryImage.setAttribute('src', event.target.value);
 }
 
 function handleEntrySubmit(event) {
@@ -60,11 +61,13 @@ function generateEntries(event) {
 
 function openEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec';
+  $entriesList.className = 'entries-section hidden';
   data.view = 'entry-form';
 }
 
 function closeEntryForm(event) {
   $divFormEntry.className = 'entry-form-sec hidden';
+  $entriesList.className = 'entries-section';
   data.view = 'entry-list';
 }
 
