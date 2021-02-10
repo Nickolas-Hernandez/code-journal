@@ -60,6 +60,7 @@ function createEntry(entry) {
   columnOtherHalf.appendChild(titleRow);
   columnOtherHalf.appendChild(entryNotes);
   newEntry.appendChild(columnOtherHalf);
+  newEntry.setAttribute('data-entry-id', entry.entryId);
   return newEntry;
 }
 
