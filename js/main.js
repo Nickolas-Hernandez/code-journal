@@ -16,18 +16,25 @@ function handleImageUrlInput(event) {
 
 function handleEntrySubmit(event) {
   event.preventDefault();
-  var entry = {
-    image: $entryForm.elements.image.value,
-    title: $entryForm.elements.title.value,
-    notes: $entryForm.elements.notes.value,
-    entryId: data.nextEntryId
-  };
-  data.nextEntryId++;
-  data.entries.unshift(entry);
+  if($formTitle.textContent === 'Edit Entry'){
+    data.editing.image = $entryForm.elements.image.value;
+    data.editing.title = $entryForm.elements.title.value;
+    data.editing.notes = $entryForm.elements.notes.value;
+    console.log(data);
+  }else{
+    var entry = {
+      image: $entryForm.elements.image.value,
+      title: $entryForm.elements.title.value,
+      notes: $entryForm.elements.notes.value,
+      entryId: data.nextEntryId
+    };
+    data.nextEntryId++;
+    data.entries.unshift(entry);
+    var tempEntry = createEntry(entry)
+    $entryList.prepend(tempEntry);
+  }
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
-  var tempEntry = createEntry(entry);
-  $entryList.prepend(tempEntry);
   closeEntryForm();
 }
 
@@ -104,7 +111,7 @@ function handleEdit(event) {
     $entryImage.setAttribute('src', data.editing.image);
     $entryForm.elements['entry-title'].value = data.editing.title;
     $entryForm.elements['notes-entry'].value = data.editing.notes;
-    console.log($entryForm);
+    console.log(data);
   }
 }
 
