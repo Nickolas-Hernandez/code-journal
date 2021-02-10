@@ -107,34 +107,32 @@ li {
   padding: 1rem 0;
 }
 
-.new-entry-button {
+button {
+  background-color: #edf1f7;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
   font-size: 16px;
+  box-shadow: 1px 2px 3px rgba(99, 99, 99, 0.2);
+}
+
+.new-entry-button {
   width: 70px;
   height: 30px;
   border-radius: 50px;
-  border: none;
-  outline: none;
-  background-color: #edf1f7;
-  box-shadow: 1px 2px 3px rgba(99, 99, 99, 0.2);
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.new-entry-button:hover {
-  background-color: #590202;
-  color: white;
 }
 
 .close-button {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  border: none;
-  outline: none;
-  background-color: #edf1f7;
-  box-shadow: 1px 2px 3px rgba(99, 99, 99, 0.2);
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+}
+
+.new-entry-button:hover,
+.close-button:hover {
+  background-color: #590202;
+  color: white;
 }
 
 .close-button > span {
@@ -151,10 +149,6 @@ li {
 
 .line-2 {
   transform: rotateZ(-45deg) translateY(-25%) translateX(5%);
-}
-
-.close-button:hover {
-  background-color: #590202;
 }
 
 .close-button:hover > span {
