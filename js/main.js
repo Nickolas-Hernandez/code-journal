@@ -24,6 +24,8 @@ function handleEntrySubmit(event) {
   data.entries.unshift(entry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
+  var tempEntry = createEntry(entry);
+  $entryList.prepend(tempEntry);
 }
 
 function createEntry(entry) {
@@ -45,12 +47,13 @@ function createEntry(entry) {
   columnOtherHalf.appendChild(entryTitle);
   columnOtherHalf.appendChild(entryNotes);
   newEntry.appendChild(columnOtherHalf);
-  $entryList.appendChild(newEntry);
+  return newEntry;
 }
 
 function generateEntries(event) {
   for (var i = 0; i < data.entries.length; i++) {
-    createEntry(data.entries[i]);
+    var entry = createEntry(data.entries[i]);
+    $entryList.appendChild(entry);
   }
 }
 
