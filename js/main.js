@@ -26,6 +26,7 @@ function handleEntrySubmit(event) {
   $entryForm.reset();
   var tempEntry = createEntry(entry);
   $entryList.prepend(tempEntry);
+  closeEntryForm();
 }
 
 function createEntry(entry) {
