@@ -8,6 +8,7 @@ var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
 var $closeButton = document.querySelector('.close-button');
 var $entriesList = document.querySelector('.entries-section');
+var $entriesNav = document.querySelector('.entries-nav');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -83,5 +84,6 @@ $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $closeButton.addEventListener('click', closeEntryForm);
+$entriesNav.addEventListener('click', closeEntryForm);
 window.addEventListener('DOMContentLoaded', generateEntries);
 window.addEventListener('load', openPreviousView);
