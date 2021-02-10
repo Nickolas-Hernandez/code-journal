@@ -43,6 +43,7 @@ function createEntry(entry) {
   columnHalf.className = 'column-half';
   columnOtherHalf.className = 'column-half';
   imageContainer.className = 'image-container';
+  entryImage.className = 'entry-image';
   entryImage.setAttribute('src', entry.image);
   entryImage.setAttribute('alt', 'entry image');
   entryTitle.textContent = entry.title;
