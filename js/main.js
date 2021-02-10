@@ -3,7 +3,7 @@
 var $entryForm = document.querySelector('.entry-form');
 var $imageInput = document.querySelector('#image-url');
 var $entryImage = document.querySelector('.entry-image');
-var $entryList = document.querySelector('.entries'); // enntry ul
+var $entryList = document.querySelector('.entries');
 var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
 var $closeButton = document.querySelector('.close-button');
@@ -45,7 +45,7 @@ function createEntry(entry) {
   columnHalf.className = 'column-half';
   columnOtherHalf.className = 'column-half';
   imageContainer.className = 'image-container';
-  entryImage.className = 'entry-image';
+  entryImage.className = 'saved-entry-image';
   titleRow.className = 'title-row row';
   editIcon.className = 'fas fa-pencil-alt';
   entryImage.setAttribute('src', entry.image);
@@ -98,6 +98,10 @@ function handleEdit(event) {
     var entryID = entry.getAttribute('data-entry-id');
     var dataEntry = data.entries.length - entryID;
     data.editing = data.entries[dataEntry];
+    $entryForm.elements['image-url'].value = data.editing.image;
+    $entryImage.setAttribute('src', data.editing.image);
+    $entryForm.elements['entry-title'].value = data.editing.title;
+    $entryForm.elements['notes-entry'].value = data.editing.notes;
   }
 }
 

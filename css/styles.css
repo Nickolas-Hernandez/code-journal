@@ -169,8 +169,12 @@ button {
   justify-content: center;
 }
 
-.entry-image {
+.saved-entry-image {
   min-height: 100%;
+}
+
+.entry-image {
+  width: 100%;
 }
 
 .title-row {
@@ -178,7 +182,7 @@ button {
   justify-content: space-between;
 }
 
-i{
+i {
   cursor: pointer;
 }
 
