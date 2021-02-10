@@ -115,6 +115,10 @@ button {
   box-shadow: 1px 2px 3px rgba(99, 99, 99, 0.2);
 }
 
+.place-holder-img {
+  width: 100%;
+}
+
 .new-entry-button {
   width: 70px;
   height: 30px;
@@ -161,7 +165,7 @@ button {
   box-shadow: 0 3px 4px  rgba(62, 62, 62, 0.5);
   border-radius: 4px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -178,7 +182,7 @@ button {
     padding: 2rem;
   }
 
-  /* .image-container {
+  .image-container {
     height: 200px;
-  } */
+  }
 }
