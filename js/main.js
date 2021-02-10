@@ -96,6 +96,8 @@ function handleEdit(event) {
     $divFormEntry.className = 'entry-form-sec';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
+    var dataEntry = data.entries.length - entryID;
+    data.editing = data.entries[dataEntry];
   }
 }
 
