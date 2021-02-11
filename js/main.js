@@ -97,6 +97,9 @@ function generateEntries(event) {
 }
 
 function openEntryForm(event) {
+  $entryForm.className = 'entry-form';
+  $entryForm.reset();
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $saveBtn.className = "";
   $deleteBtn.className = 'delete-button hidden';
   $divFormEntry.className = 'entry-form-sec';
@@ -119,6 +122,9 @@ function openPreviousView(event) {
     $entryImage.setAttribute('src', data.editing.image);
     $entryForm.elements['entry-title'].value = data.editing.title;
     $entryForm.elements['notes-entry'].value = data.editing.notes;
+    $formTitle.textContent = 'Edit Entry';
+    $deleteBtn.className = 'delete-button';
+    $saveBtn.className = 'edit';
   } else if (data.view === 'entry-form') {
     $divFormEntry.className = 'entry-form-sec';
     $entriesList.className = 'entries-section hidden';
@@ -154,6 +160,17 @@ function handleDelete(event){
   console.log('event trgt className', event.target.className);
   if(event.target.className === 'cancel-button'){
     $modalSection.className = 'modal-section hidden';
+  }else if(event.target.className === 'modal-delete-button'){
+    for(var i = 0; i < data.entries.length; i++){
+      if(data.editing === data.entries[i]){
+        data.entries.splice(i, 1);
+      }
+    }
+    data.editing = null;
+    $modalSection.className = 'modal-delete-button hidden';
+    $entryForm.className = 'entry-form-sec hidden';
+    $entriesList.className = 'entries-section';
+    data.view = 'entry-list';
   }
 }
 
