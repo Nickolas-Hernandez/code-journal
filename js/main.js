@@ -9,6 +9,7 @@ var $divFormEntry = document.querySelector('.entry-form-sec');
 var $entriesList = document.querySelector('.entries-section');
 var $entriesNav = document.querySelector('.entries-nav');
 var $formTitle = document.querySelector('.form-title');
+var $deleteBtn = document.querySelector('.delete-button');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
