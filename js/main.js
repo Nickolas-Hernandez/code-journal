@@ -11,6 +11,7 @@ var $entriesNav = document.querySelector('.entries-nav');
 var $formTitle = document.querySelector('.form-title');
 var $deleteBtn = document.querySelector('.delete-button');
 var $saveBtn = document.querySelector('#save-button');
+var $modalSection = document.querySelector('.modal-section');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -35,7 +36,8 @@ function handleEntrySubmit(event) {
       var updatedEntry = createEntry(data.editing);
       selectedEntry.replaceWith(updatedEntry);
     }else if(event.submitter === $deleteBtn){
-      console.log('Ayoooo');
+      $modalSection.className = 'modal-section';
+      return;
     }
   } else {
     var entry = {
@@ -137,11 +139,21 @@ function handleEdit(event) {
   }
 }
 
+function handleDelete(event){
+  console.log('event', event);
+  console.log('event trgt', event.target);
+  console.log('event trgt className', event.target.className);
+  if(event.target.className === 'cancel-button'){
+    $modalSection.className = 'modal-section hidden';
+  }
+}
+
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $entriesNav.addEventListener('click', closeEntryForm);
 $entryList.addEventListener('click', handleEdit);
+$modalSection.addEventListener('click', handleDelete);
 window.addEventListener('DOMContentLoaded', generateEntries);
 window.addEventListener('load', openPreviousView);
