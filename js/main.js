@@ -8,7 +8,7 @@ var $newEntryBtn = document.querySelector('.new-entry-button');
 var $divFormEntry = document.querySelector('.entry-form-sec');
 var $entriesList = document.querySelector('.entries-section');
 var $entriesNav = document.querySelector('.entries-nav');
-var $formTitle = document.querySelector('.form-title')
+var $formTitle = document.querySelector('.form-title');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -16,14 +16,17 @@ function handleImageUrlInput(event) {
 
 function handleEntrySubmit(event) {
   event.preventDefault();
-  if($formTitle.textContent === 'Edit Entry'){
+  if ($formTitle.textContent === 'Edit Entry') {
     var entryID = data.editing.entryId;
+    var index = data.entries.length - entryID;
+    var oldEntry = $entryList.querySelector(`li:nth-child(${index + 1})`);
     data.editing.image = $entryForm.elements.image.value;
     data.editing.title = $entryForm.elements.title.value;
     data.editing.notes = $entryForm.elements.notes.value;
-    data.entries[data.entries.length - entryID] = data.editing;
-    console.log('data.editing', data.editing);
-  }else{
+    data.entries[index] = data.editing;
+    var updatedEntry = createEntry(data.editing);
+    oldEntry.replaceWith(updatedEntry);
+  } else {
     var entry = {
       image: $entryForm.elements.image.value,
       title: $entryForm.elements.title.value,
@@ -32,7 +35,7 @@ function handleEntrySubmit(event) {
     };
     data.nextEntryId++;
     data.entries.unshift(entry);
-    var tempEntry = createEntry(entry)
+    var tempEntry = createEntry(entry);
     $entryList.prepend(tempEntry);
   }
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -113,7 +116,6 @@ function handleEdit(event) {
     $entryImage.setAttribute('src', data.editing.image);
     $entryForm.elements['entry-title'].value = data.editing.title;
     $entryForm.elements['notes-entry'].value = data.editing.notes;
-    console.log(data);
   }
 }
 
