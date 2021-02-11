@@ -10,6 +10,7 @@ var $entriesList = document.querySelector('.entries-section');
 var $entriesNav = document.querySelector('.entries-nav');
 var $formTitle = document.querySelector('.form-title');
 var $deleteBtn = document.querySelector('.delete-button');
+var $saveBtn = document.querySelector('#save-button');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -90,6 +91,8 @@ function generateEntries(event) {
 }
 
 function openEntryForm(event) {
+  $saveBtn.className = "";
+  $deleteBtn.className = 'delete-button hidden';
   $divFormEntry.className = 'entry-form-sec';
   $entriesList.className = 'entries-section hidden';
   data.view = 'entry-form';
@@ -113,6 +116,8 @@ function openPreviousView(event) {
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
     openEntryForm();
+    $deleteBtn.className = 'delete-button';
+    $saveBtn.className = "edit";
     $formTitle.textContent = 'Edit Entry';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
@@ -128,10 +133,15 @@ function handleEdit(event) {
   }
 }
 
+function handleDelete(event){
+  console.log('hi!');
+}
+
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $entriesNav.addEventListener('click', closeEntryForm);
 $entryList.addEventListener('click', handleEdit);
+$deleteBtn.addEventListener('click', handleDelete);
 window.addEventListener('DOMContentLoaded', generateEntries);
 window.addEventListener('load', openPreviousView);

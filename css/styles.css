@@ -161,6 +161,24 @@ i {
   cursor: pointer;
 }
 
+.button-row{
+  display: flex;
+}
+
+.delete-button{
+  font-size: 14px;
+  background: none;
+  box-shadow: none;
+  align-self: flex-end;
+  text-decoration: underline;
+  color: rgb(109, 109, 109);
+}
+
+.delete-button,
+#save-button.edit{
+  width: 100px;
+}
+
 @media only screen and (min-width: 768px) {
   form > h2 {
     margin: 2rem 0;
