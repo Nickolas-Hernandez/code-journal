@@ -127,36 +127,9 @@ button {
   border-radius: 50px;
 }
 
-.close-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.new-entry-button:hover,
-.close-button:hover {
+.new-entry-button:hover {
   background-color: #590202;
   color: white;
-}
-
-.close-button > span {
-  padding: 2px 0.4rem;
-  background: rgb(40, 40, 40);
-  display: block;
-  border-radius: 5px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.line-1 {
-  transform: rotateZ(45deg) translateY(25%) translateX(5%);
-}
-
-.line-2 {
-  transform: rotateZ(-45deg) translateY(-25%) translateX(5%);
-}
-
-.close-button:hover > span {
-  background: white;
 }
 
 .image-container {
