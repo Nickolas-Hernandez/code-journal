@@ -112,8 +112,16 @@ function closeEntryForm(event) {
 }
 
 function openPreviousView(event) {
-  if (data.view === 'entry-form') {
+  if(data.view === 'entry-form-edit'){
+    $divFormEntry.className = 'entry-form';
+    $entriesList.className = 'entries-section hidden';
+    $entryForm.elements['image-url'].value = data.editing.image;
+    $entryImage.setAttribute('src', data.editing.image);
+    $entryForm.elements['entry-title'].value = data.editing.title;
+    $entryForm.elements['notes-entry'].value = data.editing.notes;
+  } else if (data.view === 'entry-form') {
     $divFormEntry.className = 'entry-form-sec';
+    $entriesList.className = 'entries-section hidden';
   } else {
     $divFormEntry.className = 'entry-form-sec hidden';
   }
@@ -122,6 +130,7 @@ function openPreviousView(event) {
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
     openEntryForm();
+    data.view = 'entry-form-edit'
     $deleteBtn.className = 'delete-button';
     $saveBtn.className = "edit";
     $formTitle.textContent = 'Edit Entry';
