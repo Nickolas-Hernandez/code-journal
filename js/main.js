@@ -17,10 +17,12 @@ function handleImageUrlInput(event) {
 function handleEntrySubmit(event) {
   event.preventDefault();
   if($formTitle.textContent === 'Edit Entry'){
+    var entryID = data.editing.entryId;
     data.editing.image = $entryForm.elements.image.value;
     data.editing.title = $entryForm.elements.title.value;
     data.editing.notes = $entryForm.elements.notes.value;
-    console.log(data);
+    data.entries[data.entries.length - entryID] = data.editing;
+    console.log('data.editing', data.editing);
   }else{
     var entry = {
       image: $entryForm.elements.image.value,
