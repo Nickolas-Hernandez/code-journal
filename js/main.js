@@ -19,13 +19,18 @@ function handleEntrySubmit(event) {
   if ($formTitle.textContent === 'Edit Entry') {
     var entryID = data.editing.entryId;
     var index = data.entries.length - entryID;
-    var oldEntry = $entryList.querySelector(`li:nth-child(${index + 1})`);
+    var oldEntries = $entryList.querySelectorAll('li');
+    for (var i = 0; i < oldEntries.length; i++) {
+      if (entryID.toString() === oldEntries[i].dataset.entryId) {
+        var selectedEntry = oldEntries[i];
+      }
+    }
     data.editing.image = $entryForm.elements.image.value;
     data.editing.title = $entryForm.elements.title.value;
     data.editing.notes = $entryForm.elements.notes.value;
     data.entries[index] = data.editing;
     var updatedEntry = createEntry(data.editing);
-    oldEntry.replaceWith(updatedEntry);
+    selectedEntry.replaceWith(updatedEntry);
   } else {
     var entry = {
       image: $entryForm.elements.image.value,
@@ -110,8 +115,11 @@ function handleEdit(event) {
     $formTitle.textContent = 'Edit Entry';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
-    var dataEntry = data.entries.length - entryID;
-    data.editing = data.entries[dataEntry];
+    for (var i = 0; i < data.entries.length; i++) {
+      if (entryID === data.entries[i].entryId.toString()) {
+        data.editing = data.entries[i];
+      }
+    }
     $entryForm.elements['image-url'].value = data.editing.image;
     $entryImage.setAttribute('src', data.editing.image);
     $entryForm.elements['entry-title'].value = data.editing.title;
