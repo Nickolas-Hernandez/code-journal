@@ -73,7 +73,6 @@ textarea {
   color: white;
   width: 100%;
   box-shadow: 0 3px 4px  rgba(62, 62, 62, 0.5);
-  margin-left: auto;
   background-color: #590202;
   cursor: pointer;
 }
@@ -163,6 +162,7 @@ i {
 
 .button-row{
   display: flex;
+  justify-content: space-between;
 }
 
 .delete-button{

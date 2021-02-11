@@ -19,20 +19,24 @@ function handleImageUrlInput(event) {
 function handleEntrySubmit(event) {
   event.preventDefault();
   if ($formTitle.textContent === 'Edit Entry') {
-    var entryID = data.editing.entryId;
-    var index = data.entries.length - entryID;
-    var oldEntries = $entryList.querySelectorAll('li');
-    for (var i = 0; i < oldEntries.length; i++) {
-      if (entryID.toString() === oldEntries[i].dataset.entryId) {
-        var selectedEntry = oldEntries[i];
+    if(event.submitter === $saveBtn){
+      var entryID = data.editing.entryId;
+      var index = data.entries.length - entryID;
+      var oldEntries = $entryList.querySelectorAll('li');
+      for (var i = 0; i < oldEntries.length; i++) {
+        if (entryID.toString() === oldEntries[i].dataset.entryId) {
+          var selectedEntry = oldEntries[i];
+        }
       }
+      data.editing.image = $entryForm.elements.image.value;
+      data.editing.title = $entryForm.elements.title.value;
+      data.editing.notes = $entryForm.elements.notes.value;
+      data.entries[index] = data.editing;
+      var updatedEntry = createEntry(data.editing);
+      selectedEntry.replaceWith(updatedEntry);
+    }else if(event.submitter === $deleteBtn){
+      console.log('Ayoooo');
     }
-    data.editing.image = $entryForm.elements.image.value;
-    data.editing.title = $entryForm.elements.title.value;
-    data.editing.notes = $entryForm.elements.notes.value;
-    data.entries[index] = data.editing;
-    var updatedEntry = createEntry(data.editing);
-    selectedEntry.replaceWith(updatedEntry);
   } else {
     var entry = {
       image: $entryForm.elements.image.value,
@@ -133,15 +137,11 @@ function handleEdit(event) {
   }
 }
 
-function handleDelete(event){
-  console.log('hi!');
-}
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $entriesNav.addEventListener('click', closeEntryForm);
 $entryList.addEventListener('click', handleEdit);
-$deleteBtn.addEventListener('click', handleDelete);
 window.addEventListener('DOMContentLoaded', generateEntries);
 window.addEventListener('load', openPreviousView);
