@@ -20,7 +20,7 @@ function handleImageUrlInput(event) {
 function handleEntrySubmit(event) {
   event.preventDefault();
   if ($formTitle.textContent === 'Edit Entry') {
-    if(event.submitter === $saveBtn){
+    if (event.submitter === $saveBtn) {
       var entryID = data.editing.entryId;
       var index = data.entries.length - entryID;
       var oldEntries = $entryList.querySelectorAll('li');
@@ -35,7 +35,7 @@ function handleEntrySubmit(event) {
       data.entries[index] = data.editing;
       var updatedEntry = createEntry(data.editing);
       selectedEntry.replaceWith(updatedEntry);
-    }else if(event.submitter === $deleteBtn){
+    } else if (event.submitter === $deleteBtn) {
       $modalSection.className = 'modal-section';
       return;
     }
@@ -100,7 +100,7 @@ function openEntryForm(event) {
   $entryForm.className = 'entry-form';
   $entryForm.reset();
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $saveBtn.className = "";
+  $saveBtn.className = '';
   $deleteBtn.className = 'delete-button hidden';
   $divFormEntry.className = 'entry-form-sec';
   $entriesList.className = 'entries-section hidden';
@@ -115,7 +115,7 @@ function closeEntryForm(event) {
 }
 
 function openPreviousView(event) {
-  if(data.view === 'entry-form-edit'){
+  if (data.view === 'entry-form-edit') {
     $divFormEntry.className = 'entry-form';
     $entriesList.className = 'entries-section hidden';
     $entryForm.elements['image-url'].value = data.editing.image;
@@ -136,9 +136,9 @@ function openPreviousView(event) {
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
     openEntryForm();
-    data.view = 'entry-form-edit'
+    data.view = 'entry-form-edit';
     $deleteBtn.className = 'delete-button';
-    $saveBtn.className = "edit";
+    $saveBtn.className = 'edit';
     $formTitle.textContent = 'Edit Entry';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
@@ -154,16 +154,19 @@ function handleEdit(event) {
   }
 }
 
-function handleDelete(event){
-  console.log('event', event);
-  console.log('event trgt', event.target);
-  console.log('event trgt className', event.target.className);
-  if(event.target.className === 'cancel-button'){
+function handleDelete(event) {
+  if (event.target.className === 'cancel-button') {
     $modalSection.className = 'modal-section hidden';
-  }else if(event.target.className === 'modal-delete-button'){
-    for(var i = 0; i < data.entries.length; i++){
-      if(data.editing === data.entries[i]){
+  } else if (event.target.className === 'modal-delete-button') {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i]) {
         data.entries.splice(i, 1);
+      }
+    }
+    var listItems = $entryList.querySelectorAll('li');
+    for (var j = 0; j < listItems.length; j++) {
+      if (data.editing.entryId.toString() === listItems[j].dataset.entryId) {
+        listItems[j].remove();
       }
     }
     data.editing = null;
@@ -173,7 +176,6 @@ function handleDelete(event){
     data.view = 'entry-list';
   }
 }
-
 
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
