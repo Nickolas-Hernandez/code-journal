@@ -48,6 +48,11 @@ textarea {
   outline: none;
 }
 
+p {
+  font-size: 14px;
+  color: rgb(63, 63, 63);
+}
+
 .header-container {
   height: 100%;
   display: flex;
@@ -65,7 +70,7 @@ textarea {
   padding: 1rem 0;
 }
 
-.img-label-wrapper {
+.input-label-wrapper {
   margin-bottom: 0.8rem;
 }
 
@@ -145,10 +150,13 @@ button {
 
 .saved-entry-image {
   min-height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .entry-image {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .title-row {
@@ -223,10 +231,19 @@ i {
   }
 
   li {
-    padding: 2rem;
+    padding: 2rem 0;
   }
 
   .image-container {
-    height: 200px;
+    height: 250px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p,
+  label {
+    font-size: 16px;
   }
 }
