@@ -9,6 +9,9 @@ var $divFormEntry = document.querySelector('.entry-form-sec');
 var $entriesList = document.querySelector('.entries-section');
 var $entriesNav = document.querySelector('.entries-nav');
 var $formTitle = document.querySelector('.form-title');
+var $deleteBtn = document.querySelector('.delete-button');
+var $saveBtn = document.querySelector('#save-button');
+var $modalSection = document.querySelector('.modal-section');
 
 function handleImageUrlInput(event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -17,20 +20,25 @@ function handleImageUrlInput(event) {
 function handleEntrySubmit(event) {
   event.preventDefault();
   if ($formTitle.textContent === 'Edit Entry') {
-    var entryID = data.editing.entryId;
-    var index = data.entries.length - entryID;
-    var oldEntries = $entryList.querySelectorAll('li');
-    for (var i = 0; i < oldEntries.length; i++) {
-      if (entryID.toString() === oldEntries[i].dataset.entryId) {
-        var selectedEntry = oldEntries[i];
+    if (event.submitter === $saveBtn) {
+      var entryID = data.editing.entryId;
+      var index = data.entries.length - entryID;
+      var oldEntries = $entryList.querySelectorAll('li');
+      for (var i = 0; i < oldEntries.length; i++) {
+        if (entryID.toString() === oldEntries[i].dataset.entryId) {
+          var selectedEntry = oldEntries[i];
+        }
       }
+      data.editing.image = $entryForm.elements.image.value;
+      data.editing.title = $entryForm.elements.title.value;
+      data.editing.notes = $entryForm.elements.notes.value;
+      data.entries[index] = data.editing;
+      var updatedEntry = createEntry(data.editing);
+      selectedEntry.replaceWith(updatedEntry);
+    } else if (event.submitter === $deleteBtn) {
+      $modalSection.className = 'modal-section';
+      return;
     }
-    data.editing.image = $entryForm.elements.image.value;
-    data.editing.title = $entryForm.elements.title.value;
-    data.editing.notes = $entryForm.elements.notes.value;
-    data.entries[index] = data.editing;
-    var updatedEntry = createEntry(data.editing);
-    selectedEntry.replaceWith(updatedEntry);
   } else {
     var entry = {
       image: $entryForm.elements.image.value,
@@ -89,6 +97,11 @@ function generateEntries(event) {
 }
 
 function openEntryForm(event) {
+  $entryForm.className = 'entry-form';
+  $entryForm.reset();
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $saveBtn.className = '';
+  $deleteBtn.className = 'delete-button hidden';
   $divFormEntry.className = 'entry-form-sec';
   $entriesList.className = 'entries-section hidden';
   data.view = 'entry-form';
@@ -102,8 +115,19 @@ function closeEntryForm(event) {
 }
 
 function openPreviousView(event) {
-  if (data.view === 'entry-form') {
+  if (data.view === 'entry-form-edit') {
+    $divFormEntry.className = 'entry-form';
+    $entriesList.className = 'entries-section hidden';
+    $entryForm.elements['image-url'].value = data.editing.image;
+    $entryImage.setAttribute('src', data.editing.image);
+    $entryForm.elements['entry-title'].value = data.editing.title;
+    $entryForm.elements['notes-entry'].value = data.editing.notes;
+    $formTitle.textContent = 'Edit Entry';
+    $deleteBtn.className = 'delete-button';
+    $saveBtn.className = 'edit';
+  } else if (data.view === 'entry-form') {
     $divFormEntry.className = 'entry-form-sec';
+    $entriesList.className = 'entries-section hidden';
   } else {
     $divFormEntry.className = 'entry-form-sec hidden';
   }
@@ -112,6 +136,9 @@ function openPreviousView(event) {
 function handleEdit(event) {
   if (event.target.tagName === 'I') {
     openEntryForm();
+    data.view = 'entry-form-edit';
+    $deleteBtn.className = 'delete-button';
+    $saveBtn.className = 'edit';
     $formTitle.textContent = 'Edit Entry';
     var entry = event.target.closest('.entry');
     var entryID = entry.getAttribute('data-entry-id');
@@ -127,10 +154,34 @@ function handleEdit(event) {
   }
 }
 
+function handleDelete(event) {
+  if (event.target.className === 'cancel-button') {
+    $modalSection.className = 'modal-section hidden';
+  } else if (event.target.className === 'modal-delete-button') {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i]) {
+        data.entries.splice(i, 1);
+      }
+    }
+    var listItems = $entryList.querySelectorAll('li');
+    for (var j = 0; j < listItems.length; j++) {
+      if (data.editing.entryId.toString() === listItems[j].dataset.entryId) {
+        listItems[j].remove();
+      }
+    }
+    data.editing = null;
+    $modalSection.className = 'modal-delete-button hidden';
+    $entryForm.className = 'entry-form-sec hidden';
+    $entriesList.className = 'entries-section';
+    data.view = 'entry-list';
+  }
+}
+
 $imageInput.addEventListener('input', handleImageUrlInput);
 $entryForm.addEventListener('submit', handleEntrySubmit);
 $newEntryBtn.addEventListener('click', openEntryForm);
 $entriesNav.addEventListener('click', closeEntryForm);
 $entryList.addEventListener('click', handleEdit);
+$modalSection.addEventListener('click', handleDelete);
 window.addEventListener('DOMContentLoaded', generateEntries);
 window.addEventListener('load', openPreviousView);

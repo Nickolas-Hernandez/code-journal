@@ -37,23 +37,24 @@
               <img class="entry-image" src="images/placeholder-image-square.jpg" alt="Entry image" placeholder="">
             </div>
             <div class="column-half">
-              <div class="img-label-wrapper">
+              <div class="input-label-wrapper">
                 <label for="image-url">Image URL</label>
                 <input type="url" name="image" id="image-url" required>
               </div>
-              <div class="img-label-wrapper">
+              <div class="input-label-wrapper">
                 <label for="entry-title">Title</label>
                 <input type="text" name="title" id="entry-title" required>
               </div>
             </div>
             <div class="column-full">
-              <div class="img-label-wrapper">
+              <div class="input-label-wrapper">
                 <label for="notes-entry">Notes</label>
                 <textarea name="notes" id="notes-entry" required></textarea>
               </div>
             </div>
-            <div class="column-full">
-              <input type="submit" id="save-button" value="Save">
+            <div class="column-full button-row">
+              <button class="delete-button hidden">Delete Entry</button>
+              <input type="submit" id="save-button" class="" value="Save">
             </div>
           </div>
         </form>
@@ -65,6 +66,13 @@
         </div>
 
         <ul class="entries"></ul>
+      </div>
+    </div>
+    <div class="modal-section hidden">
+      <div class="modal">
+        <p>Are you Sure you want to delete this entry?</p>
+        <button class="cancel-button">Cancel</button>
+        <button class="modal-delete-button">Delete</button>
       </div>
     </div>
   </main>
